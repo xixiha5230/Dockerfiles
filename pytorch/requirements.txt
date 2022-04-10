@@ -1,0 +1,5 @@
+gym[atari,accept-rom-license]==0.21.0
+pygame
+wandb
+opencv-python
+matplotlib
