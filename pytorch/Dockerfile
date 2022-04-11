@@ -1,4 +1,4 @@
-FROM pytorch/pytorch:1.11.0-cuda11.3-cudnn8-runtime
+FROM pytorch/pytorch:1.8.1-cuda10.2-cudnn7-runtime
 
 # 清华源
 RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse" > /etc/apt/sources.list
@@ -18,7 +18,7 @@ RUN echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 RUN service ssh restart
 EXPOSE 22
 
-# 开启conda环境
+# 默认开启conda环境
 RUN echo "source /opt/conda/bin/activate" >> ~/.bashrc 
 RUN echo "conda activate base" >> ~/.bashrc
 
@@ -32,6 +32,7 @@ RUN git config --global user.email xixiha5230@gmail.com
 
 # 安装opencv
 RUN apt install ffmpeg libsm6 libxext6  -y
+RUN apt install freeglut3-dev -y
 
 # 安装python包
 COPY requirements.txt /root/requirements.txt
