@@ -7,3 +7,4 @@ matplotlib
 pyglet
 ipykernel
 gym_unity
+mujoco-py<2.2,>=2.1

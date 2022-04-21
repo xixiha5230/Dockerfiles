@@ -34,6 +34,20 @@ RUN git config --global user.email xixiha5230@gmail.com
 RUN apt install ffmpeg libsm6 libxext6  -y
 RUN apt install freeglut3-dev -y
 
+# mujoco依赖
+RUN apt install -y \
+    libgl1-mesa-dev \
+    libgl1-mesa-glx \
+    libglew-dev \
+    libosmesa6-dev \
+    gcc
+
+# 复制mujoco
+COPY mujoco210 /root/.mujoco/mujoco210
+
+# 添加环境
+RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/root/.mujoco/mujoco210/bin" >> ~/.bashrc
+
 # 安装python包
 COPY requirements.txt /root/requirements.txt
 RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
